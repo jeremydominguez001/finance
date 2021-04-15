@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block title %}
+    Homepage
+{% endblock %}
+
+{% block main %}
+    <table class="table">
+        <thead>
+            <th scope="col">Stock</th>
+            <th scope="col">Shares</th>
+            <th scope="col">Price</th>
+        </thead>
+        <tbody>
+            {% for stock in user_portfolio %}
+                <tr>
+                    <td>{{ stock.symbol }}</td>
+                    <td>{{ stock.shares }}</td>
+                    <td>${{ stock.price }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        <thead>
+            <th scope="col">Holdings Value</th>
+            <th scope="col">Buying Power</th>
+            <th scope="col">Portfolio Value</th>
+        </thead>
+        <tbody>
+            <!-- This is my element of cutomization where if the porfolio is lower than the previous day, 
+                 The bar is red –– otherwise, the bar is green -->
+            <tr>
+                    <td class="{{ change }}">{{ hold_value }}</td>
+                    <td class="{{ change }}">{{ buy_power }}</td>
+                    <td class="{{ change }}">{{ acct_value }}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}
